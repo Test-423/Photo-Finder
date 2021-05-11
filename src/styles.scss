@@ -1,4 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+@import "scss/vars/fonts";
+@import "scss/mixins";
+@import "scss/vars/colors";
+//@import "scss/materialTheme/customPalette";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html {
+    @include size-values(--font-size, 1rem);
+    @include size-values(--tab, 1rem);
+    @include size-values(--border-radius, 1rem);
+
+    @include var-colors($base-color);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+html,
+body {
+    font-size: 14px;
+    height: 100%;
+}
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button,
+button:focus,
+button:active {
+    border: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.elem-check,
+.mat-checkbox-layout {
+    width: 100%;
+}
+.mat-checkbox-inner-container {
+    margin: 0px 3px 0 auto !important;
+}

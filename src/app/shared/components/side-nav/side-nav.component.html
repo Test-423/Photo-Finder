@@ -1,0 +1,19 @@
+<nav class="side-nav">
+    <button class="filter nav-btn" (click)="showFilter=!showFilter">
+        <mat-icon class="btn-icon">filter_list</mat-icon>
+        <span class="btn-text">Filter</span>
+    </button>
+    <section class="filter-section" [hidden]="!showFilter">
+        <div class="filter-elem">
+            <mat-icon class="elem-icon" [color]="favCheck?'primary':'black'">favorite</mat-icon>
+            <mat-checkbox class="elem-check" labelPosition="before" (change)="setIconColor('favCheck')">Only favorite
+            </mat-checkbox>
+        </div>
+        <div class="filter-elem">
+            <mat-icon class="elem-icon" [color]="filterCheck?'primary':'black'">view_day</mat-icon>
+            <mat-checkbox class="elem-check" labelPosition="before" (change)="setIconColor('filterCheck')"> Filter 1
+
+            </mat-checkbox>
+        </div>
+    </section>
+</nav>

@@ -1,1 +1,16 @@
-<a *ngFor="let item of routingUrls" [href]="item.url" [routerLink]="item.url"> {{item.name}} </a>
+<div class="header">
+    <div class="logo">
+        <mat-icon class="logo-icon">image</mat-icon>
+        <span class="logo-text">Image Finder</span>
+    </div>
+    <nav class="nav">
+        <div class="nav-btn" *ngFor="let item of routingUrls, let i = index" [routerLink]="item.url"
+            [ngClass]="{'nav-btn-active':activePage===i}" (click)="activePage=i">
+            <mat-icon class="nav-icon" [ngClass]="{'active-item':activePage===i}">{{item.icon}}</mat-icon>
+            <span [ngClass]="{'active-item':activePage===i}">
+                {{item.name}}
+            </span>
+        </div>
+    </nav>
+    <mat-slide-toggle class="toggler" labelPosition="before">Dark theme</mat-slide-toggle>
+</div>

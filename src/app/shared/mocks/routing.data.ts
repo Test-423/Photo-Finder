@@ -2,16 +2,19 @@ export const ROUTING = [
     {
         id: 1,
         url: '',
-        name: 'Main Page'
+        name: 'Main Page',
+        icon: 'cloud'
     },
     {
         id: 2,
-        url: 'favourite',
-        name: 'Favourite Photos'
+        url: 'favorite',
+        name: 'Favorite Photos',
+        icon: 'library_books'
     },
     {
         id: 3,
         url: 'user',
-        name: 'User Page'
+        name: 'User Page',
+        icon: 'account_circle'
     }
 ]

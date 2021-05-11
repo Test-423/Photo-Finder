@@ -1,0 +1,13 @@
+:host {
+    .container {
+        display: flex;
+        align-items: center;
+        height: calc(100vh - 72px);
+        &-context {
+            height: calc(100vh - 72px);
+        }
+    }
+    .side-nav {
+        height: 100%;
+    }
+}

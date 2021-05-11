@@ -1,2 +1,12 @@
-<header></header>
-Main Page
+<div (click)="pageEvent = $event">
+    Main Page Block
+</div>
+
+<mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="true"
+    (page)="onPageChanged($event)">
+</mat-paginator>
+
+
+<div class="div" *ngFor="let item of activePageDataChunk">
+    <img class="card" src="{{item.url}}" alt="gty">
+</div>
