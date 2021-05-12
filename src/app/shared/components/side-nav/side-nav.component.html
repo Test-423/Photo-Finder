@@ -4,15 +4,10 @@
         <span class="btn-text">Filter</span>
     </button>
     <section class="filter-section" [hidden]="!showFilter">
-        <div class="filter-elem">
-            <mat-icon class="elem-icon" [color]="favCheck?'primary':'black'">favorite</mat-icon>
-            <mat-checkbox class="elem-check" labelPosition="before" (change)="setIconColor('favCheck')">Only favorite
-            </mat-checkbox>
-        </div>
-        <div class="filter-elem">
-            <mat-icon class="elem-icon" [color]="filterCheck?'primary':'black'">view_day</mat-icon>
-            <mat-checkbox class="elem-check" labelPosition="before" (change)="setIconColor('filterCheck')"> Filter 1
-
+        <div class="filter-elem" *ngFor="let elem of filterMass">
+            <mat-icon class="elem-icon" [color]="elem.isActive?'primary':'black'">{{elem.icon}}</mat-icon>
+            <mat-checkbox class="elem-check" labelPosition="before" (change)="elem.isActive=!elem.isActive">
+                {{elem.name}}
             </mat-checkbox>
         </div>
     </section>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FILTER } from '../../mocks/filter.data';
+import { Filter } from '../../interfaces/filter.model';
 
 @Component({
     selector: 'app-side-nav',
@@ -8,16 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
     showFilter: boolean = false;
-    favCheck: boolean = false;
-    filterCheck: boolean = false;
+
+    filterMass: Filter[] = FILTER;
+
     constructor() {
     }
 
     ngOnInit() {
-    }
-
-    setIconColor(prop: string) {
-        this[prop] = !this[prop];
     }
 
 }

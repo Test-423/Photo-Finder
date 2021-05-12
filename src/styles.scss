@@ -7,7 +7,6 @@ html {
     @include size-values(--font-size, 1rem);
     @include size-values(--tab, 1rem);
     @include size-values(--border-radius, 1rem);
-
     @include var-colors($base-color);
 }
 

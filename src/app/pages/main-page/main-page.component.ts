@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Images } from 'src/app/shared/interfaces/images.data';
+import { Images } from 'src/app/shared/interfaces/images.model';
 import { IMAGES } from 'src/app/shared/mocks/images.data';
 
 @Component({

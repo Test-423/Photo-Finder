@@ -1,8 +1,17 @@
 $base-color: (
-    white: hsl(0, 0%, 85%),
+    primary: hsla(265, 100%, 47%, 1),
+    accent: hsl(269, 92%, 95%),
+    white: hsl(0, 0%, 100%),
+    gray: hsla(0, 0%, 100%, 0.741),
+    gray-dark: rgba(33, 33, 33, 0.08),
+    black: hsl(0, 0%, 0%),
+);
+
+/*
+white: hsl(0, 0%, 85%),
     gray: hsl(0, 4%, 57%),
     primary: hsl(178, 52%, 60%),
     accent: hsl(178, 34%, 45%),
     warning: hsl(0, 52%, 60%),
     black: hsl(0, 0%, 16%),
-);
+    */
