@@ -11,7 +11,8 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
 
 import { HeaderComponent } from './shared/components/header/header.component';
 import { SideNavComponent } from './shared/components/side-nav/side-nav.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { MainPageContainer } from './pages/main-page/main-page.container';
 
 @NgModule({
     declarations: [
@@ -20,13 +21,18 @@ import { SideNavComponent } from './shared/components/side-nav/side-nav.componen
         MainPageComponent,
         HeaderComponent,
         UserPageComponent,
-        SideNavComponent
+        SideNavComponent,
+        MainPageContainer
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
-        MaterialModule
+        MaterialModule,
+        HttpClientModule,
+    ],
+    exports: [
+        MainPageContainer
     ],
     providers: [],
     bootstrap: [AppComponent]

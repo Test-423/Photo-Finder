@@ -3,7 +3,7 @@
         <mat-icon class="btn-icon">filter_list</mat-icon>
         <span class="btn-text">Filter</span>
     </button>
-    <section class="filter-section" [hidden]="!showFilter">
+    <section class="filter-section" *ngIf="showFilter">
         <div class="filter-elem" *ngFor="let elem of filterMass">
             <mat-icon class="elem-icon" [color]="elem.isActive?'primary':'black'">{{elem.icon}}</mat-icon>
             <mat-checkbox class="elem-check" labelPosition="before" (change)="elem.isActive=!elem.isActive">

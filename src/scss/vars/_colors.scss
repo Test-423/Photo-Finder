@@ -3,7 +3,8 @@ $base-color: (
     accent: hsl(269, 92%, 95%),
     white: hsl(0, 0%, 100%),
     gray: hsla(0, 0%, 100%, 0.741),
-    gray-dark: rgba(33, 33, 33, 0.08),
+    gray-white: hsla(0, 0%, 0%, 0.12),
+    gray-dark: hsla(0, 0%, 13%, 0.08),
     black: hsl(0, 0%, 0%),
 );
 

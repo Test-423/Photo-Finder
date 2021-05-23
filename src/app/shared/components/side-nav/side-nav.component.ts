@@ -8,7 +8,7 @@ import { Filter } from '../../interfaces/filter.model';
     styleUrls: ['./side-nav.component.scss']
 })
 export class SideNavComponent implements OnInit {
-    showFilter: boolean = false;
+    showFilter: boolean = true;
 
     filterMass: Filter[] = FILTER;
 

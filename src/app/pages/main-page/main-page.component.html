@@ -1,12 +1,20 @@
-<div (click)="pageEvent = $event">
-    Main Page Block
-</div>
+<main class="container" *ngIf="isActive">
+    <div class="card" *ngFor="let item of data" [ngClass]="{'card-fav': item.isFav}">
+        <div class="card-header">
+            <div class="card-icon"></div>
+            <div class="card-text">
+                <span class="card-title">{{item.title}}</span>
+                <span class="card-subtitle">{{item.title}}</span>
+            </div>
+            <mat-icon class="card-share-btn">share</mat-icon>
+            <mat-icon class="card-fav-btn" (click)="favClick(item)" [color]="item.isFav?'primary':'black'">
+                favorite</mat-icon>
+        </div>
+        <img [src]="item.url" alt="" class="card-img">
+        <div class="card-tags">
+            <div class="card-tag" *ngFor="let tag of item.tags">#{{tag}}</div>
+        </div>
+    </div>
+</main>
 
-<mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="true"
-    (page)="onPageChanged($event)">
-</mat-paginator>
-
-
-<div class="div" *ngFor="let item of activePageDataChunk">
-    <img class="card" src="{{item.url}}" alt="gty">
-</div>
+<!-- <button (click)="click()">Get</button> -->

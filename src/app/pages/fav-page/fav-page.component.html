@@ -1,3 +1,21 @@
-<div>
-    Fav Page Block
-</div>
+<main class="container">
+    <div class="card" *ngFor="let item of dataChunk" [ngClass]="{'card-fav': item.isFav}">
+        <div class="card-header">
+            <div class="card-icon"></div>
+            <div class="card-text">
+                <span class="card-title">{{item.title}}</span>
+                <span class="card-subtitle">{{item.subtitle}}</span>
+            </div>
+            <mat-icon class="card-share-btn">share</mat-icon>
+            <mat-icon class="card-fav-btn" (click)="item.isFav=favClick(item)" [color]="item.isFav?'primary':'black'">
+                favorite</mat-icon>
+        </div>
+        <img [src]="item.url" alt="" class="card-img">
+        <div class="card-tags">
+            <div class="card-tag" *ngFor="let tag of item.tags">#{{tag}}</div>
+        </div>
+    </div>
+</main>
+<mat-paginator class="paginator" [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+    [showFirstLastButtons]="this.search.showExtraBtns" (page)="onPageChanged($event)">
+</mat-paginator>

@@ -1,7 +1,17 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { BehaviorSubject, Observable, of } from "rxjs";
+//import { PageEvent } from '@angular/material/paginator';
+
+
+import { FavImagesService } from "src/services/fav-images.service";
+
 import { Images } from 'src/app/shared/interfaces/images.model';
+import { Search } from 'src/app/shared/interfaces/main-page.model';
 import { IMAGES } from 'src/app/shared/mocks/images.data';
+import { SEARCH } from 'src/app/shared/mocks/main-page.data';
+import { fromEvent } from 'rxjs';
+import { SearchImagesService } from 'src/services/search-images.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
     selector: 'app-main-page',
@@ -10,30 +20,46 @@ import { IMAGES } from 'src/app/shared/mocks/images.data';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class MainPageComponent {
+export class MainPageComponent implements OnInit, OnChanges {
 
-    pageSize = 10;
-    pageSizeOptions: number[] = [5, 10, 25, 100];
-    pageEvent: PageEvent;
+    readonly search: Search = SEARCH;
 
-    activePageDataChunk = [];
+    @Input() readonly data: Images[];
 
-    readonly imagesMass: Images[] = IMAGES;
-    length: number = this.imagesMass.length;
+    images: Images[];
+    tags: Array<string[]>;
+    isActive: boolean = false;
 
-    constructor() {
-        this.activePageDataChunk = this.imagesMass.slice(0, this.pageSize);
+    constructor(
+        private favService: FavImagesService,
+        private searchService: SearchImagesService,
+        private changeDetector: ChangeDetectorRef
+    ) {
     }
 
-    setPageSizeOptions(setPageSizeOptionsInput: string) {
-        if (setPageSizeOptionsInput) {
-            this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
-        }
+    favClick(item: Images) {
+        item.isFav = !item.isFav;
+        item.isFav ? this.favService.setItem(item) : this.favService.delItem(item);
     }
 
-    onPageChanged(e) {
-        let firstCut = e.pageIndex * e.pageSize;
-        let secondCut = firstCut + e.pageSize;
-        this.activePageDataChunk = this.imagesMass.slice(firstCut, secondCut);
+    // click() {
+    //     this.searchService.searchKeyword('bus').subscribe(data => {
+    //         if (data) {
+    //             console.log(data)
+    //             this.dataChunk = data.slice(0, 10);
+    //             this.changeDetector.detectChanges();
+    //         }
+    //     });
+    // }
+
+    ngOnInit() {
+        this.isActive = !this.isActive;
     }
+
+
+    ngOnChanges(changes: SimpleChanges): void {
+        console.log(this.data);
+        this.changeDetector.detectChanges();
+    }
+
 }

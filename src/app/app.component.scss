@@ -5,6 +5,8 @@
         height: calc(100vh - 5.2rem);
         &-context {
             height: calc(100vh - 5.2rem);
+            width: calc(100% - 20rem);
+            overflow: scroll;
         }
     }
     .side-nav {
