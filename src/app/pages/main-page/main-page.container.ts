@@ -18,6 +18,8 @@ import { ChangeDetectorRef } from '@angular/core';
     template: `
         <app-main-page
         [data]="data$ | async"
+        [value]="value"
+        (onSearch)="search($event)"
         ></app-main-page>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,12 +27,15 @@ import { ChangeDetectorRef } from '@angular/core';
 
 export class MainPageContainer implements OnInit {
     data$: Observable<Images[]>;
+    value: string = "car";
 
     constructor(private searchService: SearchImagesService, private cd: ChangeDetectorRef) {
-        this.data$ = this.searchService.searchKeyword('car');
-
+        this.search(this.value);
     }
 
-    public ngOnInit(): void {
+    public ngOnInit(): void { }
+
+    search(value) {
+        this.data$ = this.searchService.searchKeyword(value);
     }
 }

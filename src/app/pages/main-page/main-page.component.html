@@ -1,3 +1,4 @@
+<input [ngModel]="value" (ngModelChange)="searchImg($event)">
 <main class="container" *ngIf="isActive">
     <div class="card" *ngFor="let item of data" [ngClass]="{'card-fav': item.isFav}">
         <div class="card-header">
@@ -11,7 +12,7 @@
                 favorite</mat-icon>
         </div>
         <img [src]="item.url" alt="" class="card-img">
-        <div class="card-tags">
+        <div class="card-tags" *ngIf="item.tags">
             <div class="card-tag" *ngFor="let tag of item.tags">#{{tag}}</div>
         </div>
     </div>

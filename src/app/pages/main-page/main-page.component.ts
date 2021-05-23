@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { BehaviorSubject, Observable, of } from "rxjs";
 //import { PageEvent } from '@angular/material/paginator';
 
@@ -20,15 +20,18 @@ import { ChangeDetectorRef } from '@angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class MainPageComponent implements OnInit, OnChanges {
+export class MainPageComponent implements OnInit {
 
     readonly search: Search = SEARCH;
 
     @Input() readonly data: Images[];
+    @Input() readonly value: string;
+    @Output() onSearch = new EventEmitter<string>();
 
     images: Images[];
     tags: Array<string[]>;
     isActive: boolean = false;
+
 
     constructor(
         private favService: FavImagesService,
@@ -57,9 +60,8 @@ export class MainPageComponent implements OnInit, OnChanges {
     }
 
 
-    ngOnChanges(changes: SimpleChanges): void {
-        console.log(this.data);
-        this.changeDetector.detectChanges();
+    searchImg(value) {
+        this.onSearch.emit(value);
     }
 
 }

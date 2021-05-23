@@ -13,6 +13,7 @@ export interface FlickrPhoto {
     title: string; //desc
     owner: string; //nsid
     pageUrl: string;
+    tags: string;
 }
 
 export interface FlickrOutput {
@@ -47,29 +48,30 @@ export class SearchImagesService {
 
     searchKeyword(keyword: string): Observable<any> {
         const url = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&';
-        const params = `api_key=${this.flickrKey}&text=${keyword}&format=json&nojsoncallback=1&per_page=12&page=1`;
+        const params = `api_key=${this.flickrKey}&text=${keyword}&format=json&extras=tags&nojsoncallback=1&per_page=12&page=1`;
         return this.http.get(url + params).pipe(map((res: FlickrOutput) => {
             const urlArr = [];
-            res.photos.photo.forEach((ph: FlickrPhoto) => {
+            res.photos?.photo.forEach((ph: FlickrPhoto) => {
                 const photoObj = {
                     url: `https://live.staticflickr.com/${ph.server}/${ph.id}_${ph.secret}.jpg`,
                     pageUrl: `https://www.flickr.com/photos/${ph.owner}/${ph.id}`,
                     title: ph.title,
                     ownerProfile: `https://www.flickr.com/photos/${ph.owner}/`,
                     ownerPhoto: `https://farm${ph.farm}.staticflickr.com/${ph.server}/buddyicons/${ph.owner}_s.jpg`,
-                    tags: [],
+                    tags: ph.tags.split(" "),
                     isFav: false,
                     id: ph.id
                 };
-                this.getTags(ph.id).
-                    toPromise().
-                    then(res => {
-                        photoObj.tags = res;
-                    }).
-                    catch((err) => console.log('Error: %s', err));
-
+                // this.getTags(ph.id).
+                //     toPromise().
+                //     then(res => {
+                //         photoObj.tags = res;
+                //         console.log(`Get tag - ${ph.id}`)
+                //     }).
+                //     catch((err) => console.log('Error: %s', err));
                 urlArr.push(photoObj);
             });
+            console.log("End");
             return urlArr;
         }));
     }
@@ -83,7 +85,6 @@ export class SearchImagesService {
             res.photo.tags.tag.forEach((tag: FlickrTags) => {
                 tagsArr.push(tag._content);
             });
-
             return tagsArr;
         }));
     }
